@@ -1,0 +1,745 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>弱电工程师英语现场对话版</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --panel: #fffaf2;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --line: #e3d6c3;
+      --accent: #b45309;
+      --accent-soft: #fde7c7;
+      --accent-strong: #7c2d12;
+      --shadow: 0 14px 40px rgba(68, 42, 18, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #fff7ed 0, transparent 30%),
+        linear-gradient(180deg, #f8f4ec 0%, #f0e6d8 100%);
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 18px 64px;
+    }
+
+    .hero {
+      background: rgba(255, 250, 242, 0.92);
+      border: 1px solid rgba(180, 83, 9, 0.16);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 24px 24px 18px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border: 1px solid rgba(180, 83, 9, 0.18);
+    }
+
+    .player-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .player-btn {
+      border: 1px solid rgba(180, 83, 9, 0.24);
+      background: #fff7ed;
+      color: #7c2d12;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .player-btn:hover,
+    .player-btn:focus-visible {
+      background: #ffedd5;
+      outline: none;
+    }
+
+    .content {
+      background: rgba(255, 250, 242, 0.94);
+      border: 1px solid rgba(180, 83, 9, 0.12);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.3;
+      margin: 1.4em 0 0.6em;
+      color: #2f2419;
+    }
+
+    h1:first-child, h2:first-child { margin-top: 0; }
+    h2 { padding-top: 10px; border-top: 1px solid var(--line); }
+    p { margin: 0.6em 0; }
+    ul { padding-left: 1.4em; }
+    li { margin: 0.35em 0; }
+    hr { border: none; border-top: 1px solid var(--line); margin: 22px 0; }
+
+    pre {
+      background: #2a211b;
+      color: #f8efe2;
+      padding: 14px;
+      border-radius: 14px;
+      overflow: auto;
+    }
+
+    .table-wrap { overflow-x: auto; margin: 14px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fffdf8;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8ead6;
+      color: #4a2d16;
+    }
+
+    .speak {
+      border: none;
+      background: none;
+      padding: 0 2px;
+      margin: 0;
+      font: inherit;
+      color: var(--accent-strong);
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.15s ease, color 0.15s ease, transform 0.12s ease;
+    }
+
+    .speak:hover,
+    .speak:focus-visible {
+      background: var(--accent-soft);
+      outline: none;
+    }
+
+    .speak.playing {
+      background: #fed7aa;
+      color: #7c2d12;
+      transform: translateY(-1px);
+    }
+
+    .speak-code {
+      padding: 2px 8px;
+      background: #fff1db;
+      border: 1px solid rgba(180, 83, 9, 0.2);
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .speak-line {
+      margin-left: 8px;
+      border: 1px solid rgba(180, 83, 9, 0.2);
+      background: #fff7ed;
+      color: #92400e;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    .speak-line.playing {
+      background: #fdba74;
+      color: #7c2d12;
+    }
+
+    .tip {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 18px 12px 40px; }
+      .hero, .content { padding: 18px; border-radius: 18px; }
+      th, td { padding: 8px 9px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <h1>弱电工程师英语现场对话版</h1>
+      <p class="tip">Click English words, phrases, or sentence buttons to play audio. Works with your browser's local speech engine.</p>
+      <div class="toolbar">
+        <span class="badge">Tap to Speak</span>
+        <span class="badge">Mobile and Desktop</span>
+        <span class="badge">Sentence Playback</span>
+      </div>
+      <div class="player-controls">
+        <button class="player-btn" type="button" id="play-all">Play All</button>
+        <button class="player-btn" type="button" id="play-next">Next</button>
+        <button class="player-btn" type="button" id="stop-play">Stop</button>
+      </div>
+    </section>
+    <main class="content">
+<h1>弱电工程师英语现场对话版</h1>
+<p>适用场景：网络、桌面、打印机、综合布线、监控、门禁、现场施工、工单沟通<br></p>
+<p>目标：不会复杂英语也能开口说<br></p>
+<p>原则：只学工作里真会用到的句子</p>
+<hr>
+<h2>1. 使用方法</h2>
+<p>这份不要当语法书看。<br></p>
+<p>直接当“现场话术本”用。</p>
+<p>建议这样学：</p>
+<ul>
+  <li>先看中文意思</li>
+  <li>再大声读英文</li>
+  <li>直接套用到自己的工作场景</li>
+  <li>每天背 5 到 10 句</li>
+</ul>
+<p>如果你英语很差，就先背短句，不要追求完整语法。</p>
+<p>比如：</p>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Check the cable.">Check the cable.</button> <button class="speak-line" type="button" data-speak="Check the cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Restart the device.">Restart the device.</button> <button class="speak-line" type="button" data-speak="Restart the device." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The network is down.">The network is down.</button> <button class="speak-line" type="button" data-speak="The network is down." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The camera is offline.">The camera is offline.</button> <button class="speak-line" type="button" data-speak="The camera is offline." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<p>这样也完全能用。</p>
+<hr>
+<h2>2. 最常用开场句</h2>
+<h3>你到现场时</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Hello, I am here to check the issue.">Hello, I am here to check the issue.</button> 你好，我来检查这个问题。 <button class="speak-line" type="button" data-speak="Hello, I am here to check the issue." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I am from IT support.">I am from IT support.</button> 我是 IT 支持。 <button class="speak-line" type="button" data-speak="I am from IT support." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I am here for the network issue.">I am here for the network issue.</button> 我是来处理网络问题的。 <button class="speak-line" type="button" data-speak="I am here for the network issue." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I am here to check the computer.">I am here to check the computer.</button> 我来检查电脑。 <button class="speak-line" type="button" data-speak="I am here to check the computer." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I am here to inspect the cabling.">I am here to inspect the cabling.</button> 我来检查布线。 <button class="speak-line" type="button" data-speak="I am here to inspect the cabling." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h3>你想确认问题时</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="What is the problem?">What is the problem?</button> 是什么问题？ <button class="speak-line" type="button" data-speak="What is the problem?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you show me the issue?">Can you show me the issue?</button> 你能给我看一下问题吗？ <button class="speak-line" type="button" data-speak="Can you show me the issue?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="When did it start?">When did it start?</button> 是什么时候开始的？ <button class="speak-line" type="button" data-speak="When did it start?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Is it working before?">Is it working before?</button> 之前能用吗？ <button class="speak-line" type="button" data-speak="Is it working before?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Does it happen all the time?">Does it happen all the time?</button> 这个问题是一直都有吗？ <button class="speak-line" type="button" data-speak="Does it happen all the time?" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h3>你需要时间排查时</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Please give me a few minutes.">Please give me a few minutes.</button> 请给我几分钟。 <button class="speak-line" type="button" data-speak="Please give me a few minutes." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I am checking it now.">I am checking it now.</button> 我现在正在检查。 <button class="speak-line" type="button" data-speak="I am checking it now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I need to test it first.">I need to test it first.</button> 我需要先测试一下。 <button class="speak-line" type="button" data-speak="I need to test it first." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Let me check the cable and power.">Let me check the cable and power.</button> 我先检查线缆和电源。 <button class="speak-line" type="button" data-speak="Let me check the cable and power." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>3. 网络现场对话</h2>
+<h2>3.1 询问用户</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Can you access the internet?">Can you access the internet?</button> 你能上网吗？ <button class="speak-line" type="button" data-speak="Can you access the internet?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you open the website?">Can you open the website?</button> 你能打开这个网站吗？ <button class="speak-line" type="button" data-speak="Can you open the website?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you try again?">Can you try again?</button> 你能再试一次吗？ <button class="speak-line" type="button" data-speak="Can you try again?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Which port are you using?">Which port are you using?</button> 你用的是哪个端口？ <button class="speak-line" type="button" data-speak="Which port are you using?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Is the network slow or completely down?">Is the network slow or completely down?</button> 网络是慢还是完全断了？ <button class="speak-line" type="button" data-speak="Is the network slow or completely down?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Are other users affected?">Are other users affected?</button> 其他用户也受影响吗？ <button class="speak-line" type="button" data-speak="Are other users affected?" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>3.2 你排障时常说的话</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the network cable.">Please check the network cable.</button> 请检查网线。 <button class="speak-line" type="button" data-speak="Please check the network cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please reconnect the cable.">Please reconnect the cable.</button> 请重新插一下线。 <button class="speak-line" type="button" data-speak="Please reconnect the cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="This port is down.">This port is down.</button> 这个端口掉了。 <button class="speak-line" type="button" data-speak="This port is down." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The uplink is disconnected.">The uplink is disconnected.</button> 上联断开了。 <button class="speak-line" type="button" data-speak="The uplink is disconnected." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The switch is offline.">The switch is offline.</button> 交换机离线了。 <button class="speak-line" type="button" data-speak="The switch is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The router needs a restart.">The router needs a restart.</button> 路由器需要重启。 <button class="speak-line" type="button" data-speak="The router needs a restart." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please ping the gateway.">Please ping the gateway.</button> 请 ping 一下网关。 <button class="speak-line" type="button" data-speak="Please ping the gateway." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The IP address is incorrect.">The IP address is incorrect.</button> IP 地址不对。 <button class="speak-line" type="button" data-speak="The IP address is incorrect." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The DNS setting is wrong.">The DNS setting is wrong.</button> DNS 设置错了。 <button class="speak-line" type="button" data-speak="The DNS setting is wrong." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The Wi-Fi signal is weak.">The Wi-Fi signal is weak.</button> 无线信号弱。 <button class="speak-line" type="button" data-speak="The Wi-Fi signal is weak." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="There is packet loss on this link.">There is packet loss on this link.</button> 这条链路有丢包。 <button class="speak-line" type="button" data-speak="There is packet loss on this link." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The network is unstable.">The network is unstable.</button> 网络不稳定。 <button class="speak-line" type="button" data-speak="The network is unstable." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>3.3 你处理完后的表达</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="I found the problem.">I found the problem.</button> 我找到问题了。 <button class="speak-line" type="button" data-speak="I found the problem." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The cable was loose.">The cable was loose.</button> 线松了。 <button class="speak-line" type="button" data-speak="The cable was loose." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The port was disabled.">The port was disabled.</button> 端口之前被禁用了。 <button class="speak-line" type="button" data-speak="The port was disabled." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I restarted the switch.">I restarted the switch.</button> 我重启了交换机。 <button class="speak-line" type="button" data-speak="I restarted the switch." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I corrected the IP settings.">I corrected the IP settings.</button> 我改好了 IP 设置。 <button class="speak-line" type="button" data-speak="I corrected the IP settings." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The network is back now.">The network is back now.</button> 网络恢复了。 <button class="speak-line" type="button" data-speak="The network is back now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please test it now.">Please test it now.</button> 现在请测试一下。 <button class="speak-line" type="button" data-speak="Please test it now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you access the system now?">Can you access the system now?</button> 你现在能访问系统了吗？ <button class="speak-line" type="button" data-speak="Can you access the system now?" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>3.4 小对话</h2>
+<h3>对话 1：用户上不了网</h3>
+<p>User: <button class="speak speak-code" type="button" data-speak="I cannot access the internet.">I cannot access the internet.</button><br> <button class="speak-line" type="button" data-speak="I cannot access the internet." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：我上不了网。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="Can you show me your network cable?">Can you show me your network cable?</button><br> <button class="speak-line" type="button" data-speak="Can you show me your network cable?" aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：你给我看一下网线。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="This cable is loose. I will reconnect it.">This cable is loose. I will reconnect it.</button><br> <button class="speak-line" type="button" data-speak="This cable is loose. I will reconnect it." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：这根线松了，我重新插一下。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="Please try again.">Please try again.</button><br> <button class="speak-line" type="button" data-speak="Please try again." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：你再试一下。</p>
+<p>User: <button class="speak speak-code" type="button" data-speak="It works now.">It works now.</button><br> <button class="speak-line" type="button" data-speak="It works now." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：现在好了。</p>
+<h3>对话 2：网络很慢</h3>
+<p>User: <button class="speak speak-code" type="button" data-speak="The network is very slow.">The network is very slow.</button><br> <button class="speak-line" type="button" data-speak="The network is very slow." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：网络很慢。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="Are all users affected?">Are all users affected?</button><br> <button class="speak-line" type="button" data-speak="Are all users affected?" aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：所有用户都受影响吗？</p>
+<p>User: <button class="speak speak-code" type="button" data-speak="Yes.">Yes.</button><br> <button class="speak-line" type="button" data-speak="Yes." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：是的。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="I will check the uplink and gateway.">I will check the uplink and gateway.</button><br> <button class="speak-line" type="button" data-speak="I will check the uplink and gateway." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：我去检查上联和网关。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="There is packet loss on the line.">There is packet loss on the line.</button><br> <button class="speak-line" type="button" data-speak="There is packet loss on the line." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：这条线路有丢包。</p>
+<hr>
+<h2>4. 桌面支持现场对话</h2>
+<h2>4.1 常用问句</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Can you log in?">Can you log in?</button> 你能登录吗？ <button class="speak-line" type="button" data-speak="Can you log in?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="What error do you see?">What error do you see?</button> 你看到什么报错？ <button class="speak-line" type="button" data-speak="What error do you see?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you restart the computer?">Can you restart the computer?</button> 你能重启电脑吗？ <button class="speak-line" type="button" data-speak="Can you restart the computer?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Is the screen black?">Is the screen black?</button> 屏幕是黑的吗？ <button class="speak-line" type="button" data-speak="Is the screen black?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you hear any sound?">Can you hear any sound?</button> 你能听到声音吗？ <button class="speak-line" type="button" data-speak="Can you hear any sound?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Does the keyboard work?">Does the keyboard work?</button> 键盘能用吗？ <button class="speak-line" type="button" data-speak="Does the keyboard work?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Does the mouse move?">Does the mouse move?</button> 鼠标能动吗？ <button class="speak-line" type="button" data-speak="Does the mouse move?" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>4.2 常用说明</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The computer cannot boot.">The computer cannot boot.</button> 电脑无法启动。 <button class="speak-line" type="button" data-speak="The computer cannot boot." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The system is slow.">The system is slow.</button> 系统很慢。 <button class="speak-line" type="button" data-speak="The system is slow." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The screen has no signal.">The screen has no signal.</button> 屏幕无信号。 <button class="speak-line" type="button" data-speak="The screen has no signal." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The user forgot the password.">The user forgot the password.</button> 用户忘记密码了。 <button class="speak-line" type="button" data-speak="The user forgot the password." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The printer driver is missing.">The printer driver is missing.</button> 打印机驱动没装。 <button class="speak-line" type="button" data-speak="The printer driver is missing." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="You do not have permission.">You do not have permission.</button> 你没有权限。 <button class="speak-line" type="button" data-speak="You do not have permission." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please log out and log in again.">Please log out and log in again.</button> 请退出后重新登录。 <button class="speak-line" type="button" data-speak="Please log out and log in again." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please reinstall the software.">Please reinstall the software.</button> 请重新安装软件。 <button class="speak-line" type="button" data-speak="Please reinstall the software." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please update the system.">Please update the system.</button> 请更新系统。 <button class="speak-line" type="button" data-speak="Please update the system." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>4.3 处理结果表达</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="I restarted the computer.">I restarted the computer.</button> 我重启了电脑。 <button class="speak-line" type="button" data-speak="I restarted the computer." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I reinstalled the driver.">I reinstalled the driver.</button> 我重装了驱动。 <button class="speak-line" type="button" data-speak="I reinstalled the driver." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I reset the password.">I reset the password.</button> 我重置了密码。 <button class="speak-line" type="button" data-speak="I reset the password." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I updated the software.">I updated the software.</button> 我更新了软件。 <button class="speak-line" type="button" data-speak="I updated the software." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The printer is online now.">The printer is online now.</button> 打印机现在在线了。 <button class="speak-line" type="button" data-speak="The printer is online now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The issue has been fixed.">The issue has been fixed.</button> 问题已经修复。 <button class="speak-line" type="button" data-speak="The issue has been fixed." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>4.4 小对话</h2>
+<h3>对话 1：电脑无法登录</h3>
+<p>User: <button class="speak speak-code" type="button" data-speak="I cannot log in.">I cannot log in.</button><br> <button class="speak-line" type="button" data-speak="I cannot log in." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：我登不上去。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="Please enter your password again.">Please enter your password again.</button><br> <button class="speak-line" type="button" data-speak="Please enter your password again." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：请再输一次密码。</p>
+<p>User: <button class="speak speak-code" type="button" data-speak="It still does not work.">It still does not work.</button><br> <button class="speak-line" type="button" data-speak="It still does not work." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：还是不行。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="I will reset your password.">I will reset your password.</button><br> <button class="speak-line" type="button" data-speak="I will reset your password." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：我给你重置密码。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="Please try again now.">Please try again now.</button><br> <button class="speak-line" type="button" data-speak="Please try again now." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：现在再试一下。</p>
+<h3>对话 2：打印机不能用</h3>
+<p>User: <button class="speak speak-code" type="button" data-speak="The printer is offline.">The printer is offline.</button><br> <button class="speak-line" type="button" data-speak="The printer is offline." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：打印机离线了。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="I will check the cable and IP address.">I will check the cable and IP address.</button><br> <button class="speak-line" type="button" data-speak="I will check the cable and IP address." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：我检查一下线和 IP 地址。 <button class="speak-line" type="button" data-speak="IP" aria-label="鏈楄鏈彞">Read</button></p>
+<p>You: <button class="speak speak-code" type="button" data-speak="The driver is damaged. I will reinstall it.">The driver is damaged. I will reinstall it.</button><br> <button class="speak-line" type="button" data-speak="The driver is damaged. I will reinstall it." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：驱动坏了，我重装一下。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="Please print a test page.">Please print a test page.</button><br> <button class="speak-line" type="button" data-speak="Please print a test page." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：请打印一张测试页。</p>
+<hr>
+<h2>5. 综合布线现场对话</h2>
+<h2>5.1 开工前确认</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Where is the installation point?">Where is the installation point?</button> 安装点在哪里？ <button class="speak-line" type="button" data-speak="Where is the installation point?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="How many network outlets do you need?">How many network outlets do you need?</button> 需要多少个网络点位？ <button class="speak-line" type="button" data-speak="How many network outlets do you need?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Where is the rack room?">Where is the rack room?</button> 机柜间在哪里？ <button class="speak-line" type="button" data-speak="Where is the rack room?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can we run the cable above the ceiling?">Can we run the cable above the ceiling?</button> 线可以走天花上方吗？ <button class="speak-line" type="button" data-speak="Can we run the cable above the ceiling?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Do you need labels on both ends?">Do you need labels on both ends?</button> 两端都需要标签吗？ <button class="speak-line" type="button" data-speak="Do you need labels on both ends?" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>5.2 施工中常说的话</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Please move these items first.">Please move these items first.</button> 请先把这些东西移开。 <button class="speak-line" type="button" data-speak="Please move these items first." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="We need to drill here.">We need to drill here.</button> 我们要在这里打孔。 <button class="speak-line" type="button" data-speak="We need to drill here." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="We will run the cable through the conduit.">We will run the cable through the conduit.</button> 我们会把线穿进线管。 <button class="speak-line" type="button" data-speak="We will run the cable through the conduit." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The cable route is blocked.">The cable route is blocked.</button> 走线路径被堵住了。 <button class="speak-line" type="button" data-speak="The cable route is blocked." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="This conduit is full.">This conduit is full.</button> 这根线管满了。 <button class="speak-line" type="button" data-speak="This conduit is full." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="We need a longer cable.">We need a longer cable.</button> 我们需要更长的线。 <button class="speak-line" type="button" data-speak="We need a longer cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please confirm the outlet position.">Please confirm the outlet position.</button> 请确认点位位置。 <button class="speak-line" type="button" data-speak="Please confirm the outlet position." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="We will mount the device on the wall.">We will mount the device on the wall.</button> 我们会把设备装到墙上。 <button class="speak-line" type="button" data-speak="We will mount the device on the wall." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please label the cable on both ends.">Please label the cable on both ends.</button> 请在线两端贴标签。 <button class="speak-line" type="button" data-speak="Please label the cable on both ends." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="We will test every port after installation.">We will test every port after installation.</button> 安装后我们会测试每个端口。 <button class="speak-line" type="button" data-speak="We will test every port after installation." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>5.3 完工确认</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The installation is completed.">The installation is completed.</button> 安装完成了。 <button class="speak-line" type="button" data-speak="The installation is completed." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="All ports have been tested.">All ports have been tested.</button> 所有端口都已经测过了。 <button class="speak-line" type="button" data-speak="All ports have been tested." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the labels.">Please check the labels.</button> 请检查标签。 <button class="speak-line" type="button" data-speak="Please check the labels." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please confirm the outlet locations.">Please confirm the outlet locations.</button> 请确认点位位置。 <button class="speak-line" type="button" data-speak="Please confirm the outlet locations." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please sign here after acceptance.">Please sign here after acceptance.</button> 验收后请在这里签字。 <button class="speak-line" type="button" data-speak="Please sign here after acceptance." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>5.4 小对话</h2>
+<h3>对话 1：确认点位</h3>
+<p>You: <button class="speak speak-code" type="button" data-speak="How many outlets do you need in this office?">How many outlets do you need in this office?</button><br> <button class="speak-line" type="button" data-speak="How many outlets do you need in this office?" aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：这个办公室需要几个点位？</p>
+<p>User: <button class="speak speak-code" type="button" data-speak="We need six network outlets.">We need six network outlets.</button><br> <button class="speak-line" type="button" data-speak="We need six network outlets." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：需要 6 个网络点位。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="Do you want them near the desks?">Do you want them near the desks?</button><br> <button class="speak-line" type="button" data-speak="Do you want them near the desks?" aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：要放在办公桌附近吗？</p>
+<p>User: <button class="speak speak-code" type="button" data-speak="Yes, please.">Yes, please.</button><br> <button class="speak-line" type="button" data-speak="Yes, please." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：是的。</p>
+<h3>对话 2：施工受阻</h3>
+<p>You: <button class="speak speak-code" type="button" data-speak="The cable route is blocked above the ceiling.">The cable route is blocked above the ceiling.</button><br> <button class="speak-line" type="button" data-speak="The cable route is blocked above the ceiling." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：天花上面的走线路径堵住了。</p>
+<p>User: <button class="speak speak-code" type="button" data-speak="Can you use another route?">Can you use another route?</button><br> <button class="speak-line" type="button" data-speak="Can you use another route?" aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：你能换条路线吗？</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="Yes, but we need a longer cable.">Yes, but we need a longer cable.</button><br> <button class="speak-line" type="button" data-speak="Yes, but we need a longer cable." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：可以，但我们需要更长的线。</p>
+<hr>
+<h2>6. 监控系统现场对话</h2>
+<h2>6.1 常用问句</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Which camera has the issue?">Which camera has the issue?</button> 哪个摄像头有问题？ <button class="speak-line" type="button" data-speak="Which camera has the issue?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Do you have no image or poor image?">Do you have no image or poor image?</button> 是没有画面还是画面不好？ <button class="speak-line" type="button" data-speak="Do you have no image or poor image?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Is the camera offline on the NVR?">Is the camera offline on the NVR?</button> 录像机上显示离线吗？ <button class="speak-line" type="button" data-speak="Is the camera offline on the NVR?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="When did it go offline?">When did it go offline?</button> 它是什么时候离线的？ <button class="speak-line" type="button" data-speak="When did it go offline?" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>6.2 排障表达</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The camera is offline.">The camera is offline.</button> 摄像头离线。 <button class="speak-line" type="button" data-speak="The camera is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="There is no image from this camera.">There is no image from this camera.</button> 这个摄像头没有图像。 <button class="speak-line" type="button" data-speak="There is no image from this camera." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The image is blurry.">The image is blurry.</button> 画面模糊。 <button class="speak-line" type="button" data-speak="The image is blurry." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the power supply.">Please check the power supply.</button> 请检查供电。 <button class="speak-line" type="button" data-speak="Please check the power supply." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the network cable.">Please check the network cable.</button> 请检查网线。 <button class="speak-line" type="button" data-speak="Please check the network cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The PoE port has no link.">The PoE port has no link.</button> PoE 端口没有链路。 <button class="speak-line" type="button" data-speak="The PoE port has no link." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The NVR cannot detect this camera.">The NVR cannot detect this camera.</button> 录像机识别不到这台摄像头。 <button class="speak-line" type="button" data-speak="The NVR cannot detect this camera." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The lens is dirty.">The lens is dirty.</button> 镜头脏了。 <button class="speak-line" type="button" data-speak="The lens is dirty." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The infrared light is on.">The infrared light is on.</button> 红外灯亮着。 <button class="speak-line" type="button" data-speak="The infrared light is on." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I will replace the cable first.">I will replace the cable first.</button> 我先换线试试。 <button class="speak-line" type="button" data-speak="I will replace the cable first." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>6.3 处理结果表达</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The camera is back online.">The camera is back online.</button> 摄像头恢复在线了。 <button class="speak-line" type="button" data-speak="The camera is back online." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The power adapter was faulty.">The power adapter was faulty.</button> 电源适配器故障了。 <button class="speak-line" type="button" data-speak="The power adapter was faulty." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The cable was damaged.">The cable was damaged.</button> 线坏了。 <button class="speak-line" type="button" data-speak="The cable was damaged." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The image is normal now.">The image is normal now.</button> 画面现在正常了。 <button class="speak-line" type="button" data-speak="The image is normal now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please monitor it for a while.">Please monitor it for a while.</button> 请再观察一会儿。 <button class="speak-line" type="button" data-speak="Please monitor it for a while." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>6.4 小对话</h2>
+<p>User: <button class="speak speak-code" type="button" data-speak="Camera 5 is offline.">Camera 5 is offline.</button><br> <button class="speak-line" type="button" data-speak="Camera 5 is offline." aria-label="鏈楄鏈彞">Read</button></p>
+<p>用户：5 号摄像头离线了。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="I will check the switch port and power supply.">I will check the switch port and power supply.</button><br> <button class="speak-line" type="button" data-speak="I will check the switch port and power supply." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：我去检查交换机端口和供电。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="The cable is damaged. I will replace it.">The cable is damaged. I will replace it.</button><br> <button class="speak-line" type="button" data-speak="The cable is damaged. I will replace it." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：线坏了，我换一根。</p>
+<p>You: <button class="speak speak-code" type="button" data-speak="The camera is back online now.">The camera is back online now.</button><br> <button class="speak-line" type="button" data-speak="The camera is back online now." aria-label="鏈楄鏈彞">Read</button></p>
+<p>你：摄像头现在恢复在线了。</p>
+<hr>
+<h2>7. 门禁系统现场对话</h2>
+<h2>7.1 常用问句</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Which door has the problem?">Which door has the problem?</button> 哪个门有问题？ <button class="speak-line" type="button" data-speak="Which door has the problem?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Does the card reader respond?">Does the card reader respond?</button> 读卡器有反应吗？ <button class="speak-line" type="button" data-speak="Does the card reader respond?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can the door open from inside?">Can the door open from inside?</button> 从里面能开门吗？ <button class="speak-line" type="button" data-speak="Can the door open from inside?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Is there power on the lock?">Is there power on the lock?</button> 门锁有电吗？ <button class="speak-line" type="button" data-speak="Is there power on the lock?" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>7.2 排障表达</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The card reader is not working.">The card reader is not working.</button> 读卡器不能用。 <button class="speak-line" type="button" data-speak="The card reader is not working." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The door lock has no power.">The door lock has no power.</button> 门锁没电。 <button class="speak-line" type="button" data-speak="The door lock has no power." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The door does not open.">The door does not open.</button> 门打不开。 <button class="speak-line" type="button" data-speak="The door does not open." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The access control system is offline.">The access control system is offline.</button> 门禁系统离线。 <button class="speak-line" type="button" data-speak="The access control system is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the power supply.">Please check the power supply.</button> 请检查供电。 <button class="speak-line" type="button" data-speak="Please check the power supply." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the network connection.">Please check the network connection.</button> 请检查网络连接。 <button class="speak-line" type="button" data-speak="Please check the network connection." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The controller needs to be restarted.">The controller needs to be restarted.</button> 控制器需要重启。 <button class="speak-line" type="button" data-speak="The controller needs to be restarted." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>7.3 完成确认</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The card reader is working now.">The card reader is working now.</button> 读卡器现在好了。 <button class="speak-line" type="button" data-speak="The card reader is working now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The lock is normal now.">The lock is normal now.</button> 门锁正常了。 <button class="speak-line" type="button" data-speak="The lock is normal now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please test your card again.">Please test your card again.</button> 请再刷一次卡。 <button class="speak-line" type="button" data-speak="Please test your card again." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The issue has been resolved.">The issue has been resolved.</button> 问题已经解决了。 <button class="speak-line" type="button" data-speak="The issue has been resolved." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>8. 打电话或远程支持时常用句</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Can you hear me clearly?">Can you hear me clearly?</button> 你能听清楚吗？ <button class="speak-line" type="button" data-speak="Can you hear me clearly?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please tell me what you see on the screen.">Please tell me what you see on the screen.</button> 请告诉我你屏幕上看到了什么。 <button class="speak-line" type="button" data-speak="Please tell me what you see on the screen." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please click this icon.">Please click this icon.</button> 请点这个图标。 <button class="speak-line" type="button" data-speak="Please click this icon." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please open the settings page.">Please open the settings page.</button> 请打开设置页面。 <button class="speak-line" type="button" data-speak="Please open the settings page." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please restart your computer.">Please restart your computer.</button> 请重启你的电脑。 <button class="speak-line" type="button" data-speak="Please restart your computer." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please send me a photo.">Please send me a photo.</button> 请发我一张照片。 <button class="speak-line" type="button" data-speak="Please send me a photo." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please send me the error message.">Please send me the error message.</button> 请把报错信息发给我。 <button class="speak-line" type="button" data-speak="Please send me the error message." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I will connect remotely.">I will connect remotely.</button> 我将远程连接。 <button class="speak-line" type="button" data-speak="I will connect remotely." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please do not close the window.">Please do not close the window.</button> 请不要关闭这个窗口。 <button class="speak-line" type="button" data-speak="Please do not close the window." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Call me if the issue happens again.">Call me if the issue happens again.</button> 如果问题再出现，给我打电话。 <button class="speak-line" type="button" data-speak="Call me if the issue happens again." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>9. 工单、微信群、邮件里好用的简短英文</h2>
+<p>这些句子非常适合写工单备注。</p>
+<h3>故障描述</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="User cannot access the network.">User cannot access the network.</button> 用户无法访问网络。 <button class="speak-line" type="button" data-speak="User cannot access the network." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Printer is offline.">Printer is offline.</button> 打印机离线。 <button class="speak-line" type="button" data-speak="Printer is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Camera has no image.">Camera has no image.</button> 摄像头无图像。 <button class="speak-line" type="button" data-speak="Camera has no image." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="PC cannot boot.">PC cannot boot.</button> 电脑无法启动。 <button class="speak-line" type="button" data-speak="PC cannot boot." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Door lock has no power.">Door lock has no power.</button> 门锁没电。 <button class="speak-line" type="button" data-speak="Door lock has no power." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h3>处理过程</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Checked power and cable.">Checked power and cable.</button> 已检查电源和线缆。 <button class="speak-line" type="button" data-speak="Checked power and cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Restarted the device.">Restarted the device.</button> 已重启设备。 <button class="speak-line" type="button" data-speak="Restarted the device." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Replaced the network cable.">Replaced the network cable.</button> 已更换网线。 <button class="speak-line" type="button" data-speak="Replaced the network cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Reinstalled the driver.">Reinstalled the driver.</button> 已重装驱动。 <button class="speak-line" type="button" data-speak="Reinstalled the driver." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Updated the IP configuration.">Updated the IP configuration.</button> 已更新 IP 配置。 <button class="speak-line" type="button" data-speak="Updated the IP configuration." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h3>处理结果</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Issue fixed.">Issue fixed.</button> 问题已修复。 <button class="speak-line" type="button" data-speak="Issue fixed." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Working normally now.">Working normally now.</button> 现在运行正常。 <button class="speak-line" type="button" data-speak="Working normally now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Need further observation.">Need further observation.</button> 还需要继续观察。 <button class="speak-line" type="button" data-speak="Need further observation." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Waiting for user confirmation.">Waiting for user confirmation.</button> 等待用户确认。 <button class="speak-line" type="button" data-speak="Waiting for user confirmation." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Need to replace the device.">Need to replace the device.</button> 需要更换设备。 <button class="speak-line" type="button" data-speak="Need to replace the device." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>10. 最常见追问句</h2>
+<p>现场经常需要继续问，下面这些句子很好用：</p>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Which room is it in?">Which room is it in?</button> 它在哪个房间？ <button class="speak-line" type="button" data-speak="Which room is it in?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Which floor is it on?">Which floor is it on?</button> 它在哪一层？ <button class="speak-line" type="button" data-speak="Which floor is it on?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Which device is affected?">Which device is affected?</button> 哪台设备有问题？ <button class="speak-line" type="button" data-speak="Which device is affected?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="How many users are affected?">How many users are affected?</button> 影响了多少用户？ <button class="speak-line" type="button" data-speak="How many users are affected?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Is this the first time?">Is this the first time?</button> 这是第一次出现吗？ <button class="speak-line" type="button" data-speak="Is this the first time?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Did you change anything before the issue?">Did you change anything before the issue?</button> 出问题前你改过什么吗？ <button class="speak-line" type="button" data-speak="Did you change anything before the issue?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you show me the exact location?">Can you show me the exact location?</button> 你能带我看一下具体位置吗？ <button class="speak-line" type="button" data-speak="Can you show me the exact location?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you test it one more time?">Can you test it one more time?</button> 你能再测一次吗？ <button class="speak-line" type="button" data-speak="Can you test it one more time?" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>11. 你最该先背的 30 句</h2>
+<p>如果时间不够，先背这 30 句：</p>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the cable.">Please check the cable.</button> <button class="speak-line" type="button" data-speak="Please check the cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The network is down.">The network is down.</button> <button class="speak-line" type="button" data-speak="The network is down." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The internet is slow.">The internet is slow.</button> <button class="speak-line" type="button" data-speak="The internet is slow." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="This port is down.">This port is down.</button> <button class="speak-line" type="button" data-speak="This port is down." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please restart the device.">Please restart the device.</button> <button class="speak-line" type="button" data-speak="Please restart the device." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I am checking it now.">I am checking it now.</button> <button class="speak-line" type="button" data-speak="I am checking it now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I found the problem.">I found the problem.</button> <button class="speak-line" type="button" data-speak="I found the problem." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The cable is loose.">The cable is loose.</button> <button class="speak-line" type="button" data-speak="The cable is loose." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The device has no power.">The device has no power.</button> <button class="speak-line" type="button" data-speak="The device has no power." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please try again.">Please try again.</button> <button class="speak-line" type="button" data-speak="Please try again." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you log in now?">Can you log in now?</button> <button class="speak-line" type="button" data-speak="Can you log in now?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The password is incorrect.">The password is incorrect.</button> <button class="speak-line" type="button" data-speak="The password is incorrect." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The printer is offline.">The printer is offline.</button> <button class="speak-line" type="button" data-speak="The printer is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please reinstall the driver.">Please reinstall the driver.</button> <button class="speak-line" type="button" data-speak="Please reinstall the driver." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The computer cannot boot.">The computer cannot boot.</button> <button class="speak-line" type="button" data-speak="The computer cannot boot." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The screen is black.">The screen is black.</button> <button class="speak-line" type="button" data-speak="The screen is black." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="You do not have permission.">You do not have permission.</button> <button class="speak-line" type="button" data-speak="You do not have permission." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please ping the gateway.">Please ping the gateway.</button> <button class="speak-line" type="button" data-speak="Please ping the gateway." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The IP address is wrong.">The IP address is wrong.</button> <button class="speak-line" type="button" data-speak="The IP address is wrong." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The signal is weak.">The signal is weak.</button> <button class="speak-line" type="button" data-speak="The signal is weak." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The camera is offline.">The camera is offline.</button> <button class="speak-line" type="button" data-speak="The camera is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="There is no image.">There is no image.</button> <button class="speak-line" type="button" data-speak="There is no image." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the power supply.">Please check the power supply.</button> <button class="speak-line" type="button" data-speak="Please check the power supply." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please label both ends of the cable.">Please label both ends of the cable.</button> <button class="speak-line" type="button" data-speak="Please label both ends of the cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The cable route is blocked.">The cable route is blocked.</button> <button class="speak-line" type="button" data-speak="The cable route is blocked." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="All ports have been tested.">All ports have been tested.</button> <button class="speak-line" type="button" data-speak="All ports have been tested." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The issue has been fixed.">The issue has been fixed.</button> <button class="speak-line" type="button" data-speak="The issue has been fixed." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="It is working now.">It is working now.</button> <button class="speak-line" type="button" data-speak="It is working now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please confirm.">Please confirm.</button> <button class="speak-line" type="button" data-speak="Please confirm." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Thank you for your support.">Thank you for your support.</button> <button class="speak-line" type="button" data-speak="Thank you for your support." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>12. 零基础开口技巧</h2>
+<h3>技巧 1：先说关键词，也能沟通</h3>
+<p>如果你一紧张说不出完整句子，就先说关键词：</p>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="No power.">No power.</button> <button class="speak-line" type="button" data-speak="No power." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Cable loose.">Cable loose.</button> <button class="speak-line" type="button" data-speak="Cable loose." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Port down.">Port down.</button> <button class="speak-line" type="button" data-speak="Port down." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Need restart.">Need restart.</button> <button class="speak-line" type="button" data-speak="Need restart." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Camera offline.">Camera offline.</button> <button class="speak-line" type="button" data-speak="Camera offline." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<p>现场很多时候，对方也能听懂。</p>
+<h3>技巧 2：用固定句型套所有场景</h3>
+<p>你只要掌握这几个句型，就能覆盖很多情况：</p>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Please check ...">Please check ...</button> <button class="speak-line" type="button" data-speak="Please check ..." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please restart ...">Please restart ...</button> <button class="speak-line" type="button" data-speak="Please restart ..." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="There is no ...">There is no ...</button> <button class="speak-line" type="button" data-speak="There is no ..." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="... is down.">... is down.</button> <button class="speak-line" type="button" data-speak="... is down." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="... is offline.">... is offline.</button> <button class="speak-line" type="button" data-speak="... is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I will check ...">I will check ...</button> <button class="speak-line" type="button" data-speak="I will check ..." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I replaced ...">I replaced ...</button> <button class="speak-line" type="button" data-speak="I replaced ..." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please try again.">Please try again.</button> <button class="speak-line" type="button" data-speak="Please try again." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h3>技巧 3：一句不会说，就拆开说</h3>
+<p>比如：</p>
+<p>想说“我已经检查了交换机端口和网线”</p>
+<p>不会完整说也没关系，可以拆成：</p>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="I checked the switch port.">I checked the switch port.</button> <button class="speak-line" type="button" data-speak="I checked the switch port." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I checked the cable too.">I checked the cable too.</button> <button class="speak-line" type="button" data-speak="I checked the cable too." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<p>简单比复杂更实用。</p>
+<hr>
+<h2>13. 建议</h2>
+<p>这份对话版最好的用法不是“从头读到尾”，而是：</p>
+<ul>
+  <li>先背第 11 部分的 30 句</li>
+  <li>再根据你的工作内容重点背第 3、4、5、6、7 部分</li>
+  <li>以后现场遇到问题，再回来查对应场景</li>
+</ul>
+<p>如果你能把这份里的核心句子说顺，日常工作沟通已经够用了。</p>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const synth = window.speechSynthesis;
+      let activeButton = null;
+      let sequence = [];
+      let currentIndex = -1;
+      let autoPlay = false;
+
+      function clearActive() {
+        if (activeButton) {
+          activeButton.classList.remove('playing');
+          activeButton = null;
+        }
+      }
+
+      function chooseVoice() {
+        const voices = synth.getVoices();
+        const preferred = voices.find(v => /^en/i.test(v.lang) && /US|GB|AU/i.test(v.lang))
+          || voices.find(v => /^en/i.test(v.lang));
+        return preferred || null;
+      }
+
+      function getSequenceButtons() {
+        return Array.from(document.querySelectorAll('.speak-line'));
+      }
+
+      function speak(text, button, onEnd) {
+        if (!synth || !text) return;
+
+        synth.cancel();
+        clearActive();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        const voice = chooseVoice();
+        if (voice) utterance.voice = voice;
+        utterance.rate = 0.92;
+        utterance.pitch = 1;
+
+        activeButton = button;
+        if (activeButton) activeButton.classList.add('playing');
+
+        utterance.onend = () => {
+          clearActive();
+          if (typeof onEnd === 'function') onEnd();
+        };
+        utterance.onerror = () => {
+          clearActive();
+          if (typeof onEnd === 'function') onEnd();
+        };
+
+        synth.speak(utterance);
+      }
+
+      function playIndex(index) {
+        sequence = getSequenceButtons();
+        if (!sequence.length) return;
+        if (index < 0 || index >= sequence.length) {
+          autoPlay = false;
+          currentIndex = -1;
+          return;
+        }
+        currentIndex = index;
+        const button = sequence[currentIndex];
+        const text = button.dataset.speak || button.textContent.trim();
+        speak(text, button, () => {
+          if (autoPlay) playIndex(currentIndex + 1);
+        });
+      }
+
+      window.addEventListener('beforeunload', () => synth && synth.cancel());
+
+      document.addEventListener('click', event => {
+        const button = event.target.closest('.speak');
+        if (button) {
+          autoPlay = false;
+          const text = button.dataset.speak || button.textContent.trim();
+          speak(text, button);
+          return;
+        }
+
+        const lineButton = event.target.closest('.speak-line');
+        if (lineButton) {
+          autoPlay = false;
+          sequence = getSequenceButtons();
+          currentIndex = sequence.indexOf(lineButton);
+          const text = lineButton.dataset.speak || lineButton.textContent.trim();
+          speak(text, lineButton);
+          return;
+        }
+      });
+
+      document.getElementById('play-all')?.addEventListener('click', () => {
+        sequence = getSequenceButtons();
+        if (!sequence.length) return;
+        autoPlay = true;
+        playIndex(currentIndex >= 0 ? currentIndex : 0);
+      });
+
+      document.getElementById('play-next')?.addEventListener('click', () => {
+        sequence = getSequenceButtons();
+        if (!sequence.length) return;
+        autoPlay = false;
+        const nextIndex = currentIndex >= 0 ? Math.min(currentIndex + 1, sequence.length - 1) : 0;
+        playIndex(nextIndex);
+      });
+
+      document.getElementById('stop-play')?.addEventListener('click', () => {
+        autoPlay = false;
+        synth.cancel();
+        clearActive();
+      });
+    })();
+  </script>
+</body>
+</html>
