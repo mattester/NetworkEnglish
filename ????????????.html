@@ -1,0 +1,1190 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>弱电工程师英语高频背诵版</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --panel: #fffaf2;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --line: #e3d6c3;
+      --accent: #b45309;
+      --accent-soft: #fde7c7;
+      --accent-strong: #7c2d12;
+      --shadow: 0 14px 40px rgba(68, 42, 18, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #fff7ed 0, transparent 30%),
+        linear-gradient(180deg, #f8f4ec 0%, #f0e6d8 100%);
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 18px 64px;
+    }
+
+    .hero {
+      background: rgba(255, 250, 242, 0.92);
+      border: 1px solid rgba(180, 83, 9, 0.16);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 24px 24px 18px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border: 1px solid rgba(180, 83, 9, 0.18);
+    }
+
+    .player-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .player-btn {
+      border: 1px solid rgba(180, 83, 9, 0.24);
+      background: #fff7ed;
+      color: #7c2d12;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .player-btn:hover,
+    .player-btn:focus-visible {
+      background: #ffedd5;
+      outline: none;
+    }
+
+    .content {
+      background: rgba(255, 250, 242, 0.94);
+      border: 1px solid rgba(180, 83, 9, 0.12);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.3;
+      margin: 1.4em 0 0.6em;
+      color: #2f2419;
+    }
+
+    h1:first-child, h2:first-child { margin-top: 0; }
+    h2 { padding-top: 10px; border-top: 1px solid var(--line); }
+    p { margin: 0.6em 0; }
+    ul { padding-left: 1.4em; }
+    li { margin: 0.35em 0; }
+    hr { border: none; border-top: 1px solid var(--line); margin: 22px 0; }
+
+    pre {
+      background: #2a211b;
+      color: #f8efe2;
+      padding: 14px;
+      border-radius: 14px;
+      overflow: auto;
+    }
+
+    .table-wrap { overflow-x: auto; margin: 14px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fffdf8;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8ead6;
+      color: #4a2d16;
+    }
+
+    .speak {
+      border: none;
+      background: none;
+      padding: 0 2px;
+      margin: 0;
+      font: inherit;
+      color: var(--accent-strong);
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.15s ease, color 0.15s ease, transform 0.12s ease;
+    }
+
+    .speak:hover,
+    .speak:focus-visible {
+      background: var(--accent-soft);
+      outline: none;
+    }
+
+    .speak.playing {
+      background: #fed7aa;
+      color: #7c2d12;
+      transform: translateY(-1px);
+    }
+
+    .speak-code {
+      padding: 2px 8px;
+      background: #fff1db;
+      border: 1px solid rgba(180, 83, 9, 0.2);
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .speak-line {
+      margin-left: 8px;
+      border: 1px solid rgba(180, 83, 9, 0.2);
+      background: #fff7ed;
+      color: #92400e;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      vertical-align: middle;
+    }
+
+    .speak-line.playing {
+      background: #fdba74;
+      color: #7c2d12;
+    }
+
+    .tip {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 18px 12px 40px; }
+      .hero, .content { padding: 18px; border-radius: 18px; }
+      th, td { padding: 8px 9px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <h1>弱电工程师英语高频背诵版</h1>
+      <p class="tip">Click English words, phrases, or sentence buttons to play audio. Works with your browser's local speech engine.</p>
+      <div class="toolbar">
+        <span class="badge">Tap to Speak</span>
+        <span class="badge">Mobile and Desktop</span>
+        <span class="badge">Sentence Playback</span>
+      </div>
+      <div class="player-controls">
+        <button class="player-btn" type="button" id="play-all">Play All</button>
+        <button class="player-btn" type="button" id="play-next">Next</button>
+        <button class="player-btn" type="button" id="stop-play">Stop</button>
+      </div>
+    </section>
+    <main class="content">
+<h1>弱电工程师英语高频背诵版</h1>
+<p>适合用法：每天背 10 到 20 分钟<br></p>
+<p>目标：先会认、会读、会说最常用的英文<br></p>
+<p>原则：不求一次背完，只求反复见面</p>
+<hr>
+<h2>1. 使用方法</h2>
+<p>每天这样背：</p>
+<ul>
+  <li>先看英文，猜中文。</li>
+  <li>再看中文，回忆英文。</li>
+  <li>每个词读 3 遍。</li>
+  <li>每组挑 5 个词造句。</li>
+  <li>晚上快速复习一次。</li>
+</ul>
+<p>建议顺序：</p>
+<ul>
+  <li>先背高频 100 词</li>
+  <li>再背高频句子</li>
+  <li>再背场景短语</li>
+</ul>
+<hr>
+<h2>2. 最核心 50 词</h2>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>英文</th>
+<th>中文</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="network">network</button></td>
+<td>网络</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="internet">internet</button></td>
+<td>互联网</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="cable">cable</button></td>
+<td>线缆</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="wire">wire</button></td>
+<td>导线</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="port">port</button></td>
+<td>端口</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="power">power</button></td>
+<td>电源</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="device">device</button></td>
+<td>设备</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="computer">computer</button></td>
+<td>电脑</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="desktop">desktop</button></td>
+<td>台式机</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="laptop">laptop</button></td>
+<td>笔记本</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="screen">screen</button></td>
+<td>屏幕</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="monitor">monitor</button></td>
+<td>显示器 / 监控</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="keyboard">keyboard</button></td>
+<td>键盘</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="mouse">mouse</button></td>
+<td>鼠标</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="printer">printer</button></td>
+<td>打印机</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="router">router</button></td>
+<td>路由器</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="switch">switch</button></td>
+<td>交换机</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="server">server</button></td>
+<td>服务器</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="camera">camera</button></td>
+<td>摄像头</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="phone">phone</button></td>
+<td>电话</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="user">user</button></td>
+<td>用户</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="account">account</button></td>
+<td>账号</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="password">password</button></td>
+<td>密码</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="login">login</button></td>
+<td>登录</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="error">error</button></td>
+<td>错误</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="issue">issue</button></td>
+<td>问题</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="problem">problem</button></td>
+<td>问题</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="check">check</button></td>
+<td>检查</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="test">test</button></td>
+<td>测试</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="fix">fix</button></td>
+<td>修复</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="restart">restart</button></td>
+<td>重启</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="install">install</button></td>
+<td>安装</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="update">update</button></td>
+<td>更新</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="connect">connect</button></td>
+<td>连接</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="disconnect">disconnect</button></td>
+<td>断开</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="replace">replace</button></td>
+<td>更换</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="remove">remove</button></td>
+<td>移除</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="open">open</button></td>
+<td>打开</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="close">close</button></td>
+<td>关闭</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="on">on</button></td>
+<td>开</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="off">off</button></td>
+<td>关</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="up">up</button></td>
+<td>在线 / 正常</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="down">down</button></td>
+<td>掉线 / 中断</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="signal">signal</button></td>
+<td>信号</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="weak">weak</button></td>
+<td>弱</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="strong">strong</button></td>
+<td>强</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="local">local</button></td>
+<td>本地</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="remote">remote</button></td>
+<td>远程</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="rack">rack</button></td>
+<td>机柜</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="label">label</button></td>
+<td>标签</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2>3. 网络方向高频 50 词</h2>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>英文</th>
+<th>中文</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="IP address">IP address</button></td>
+<td>IP 地址</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="subnet mask">subnet mask</button></td>
+<td>子网掩码</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="gateway">gateway</button></td>
+<td>网关</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="DNS">DNS</button></td>
+<td>域名解析</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="DHCP">DHCP</button></td>
+<td>自动分配 IP</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="MAC address">MAC address</button></td>
+<td>MAC 地址</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="VLAN">VLAN</button></td>
+<td>虚拟局域网</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="interface">interface</button></td>
+<td>接口</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="uplink">uplink</button></td>
+<td>上联</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="downlink">downlink</button></td>
+<td>下联</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="link">link</button></td>
+<td>链路</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="bandwidth">bandwidth</button></td>
+<td>带宽</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="latency">latency</button></td>
+<td>延迟</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="packet">packet</button></td>
+<td>数据包</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="packet loss">packet loss</button></td>
+<td>丢包</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="firewall">firewall</button></td>
+<td>防火墙</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="access point">access point</button></td>
+<td>无线接入点</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="Wi-Fi">Wi-Fi</button></td>
+<td>无线网络</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="SSID">SSID</button></td>
+<td>无线名称</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="static IP">static IP</button></td>
+<td>静态 IP</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="dynamic IP">dynamic IP</button></td>
+<td>动态 IP</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="online">online</button></td>
+<td>在线</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="offline">offline</button></td>
+<td>离线</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="stable">stable</button></td>
+<td>稳定</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="unstable">unstable</button></td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="slow">slow</button></td>
+<td>慢</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="fast">fast</button></td>
+<td>快</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="ping">ping</button></td>
+<td>ping 测试</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="scan">scan</button></td>
+<td>扫描</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="reset">reset</button></td>
+<td>重置</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="save">save</button></td>
+<td>保存</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="configuration">configuration</button></td>
+<td>配置</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="firmware">firmware</button></td>
+<td>固件</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="backup">backup</button></td>
+<td>备份</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="restore">restore</button></td>
+<td>恢复</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="access">access</button></td>
+<td>访问</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="permission">permission</button></td>
+<td>权限</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="domain">domain</button></td>
+<td>域</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="browser">browser</button></td>
+<td>浏览器</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="website">website</button></td>
+<td>网站</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="login page">login page</button></td>
+<td>登录页</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="status">status</button></td>
+<td>状态</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="alarm">alarm</button></td>
+<td>报警</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="critical">critical</button></td>
+<td>严重</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="normal">normal</button></td>
+<td>正常</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="timeout">timeout</button></td>
+<td>超时</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="response">response</button></td>
+<td>响应</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="reconnect">reconnect</button></td>
+<td>重新连接</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="verify">verify</button></td>
+<td>验证</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="troubleshoot">troubleshoot</button></td>
+<td>排障</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2>4. 桌面与弱电施工高频 50 词</h2>
+<div class="table-wrap">
+<table>
+<thead><tr>
+<th>英文</th>
+<th>中文</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="operating system">operating system</button></td>
+<td>操作系统</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="Windows">Windows</button></td>
+<td>Windows 系统</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="driver">driver</button></td>
+<td>驱动</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="software">software</button></td>
+<td>软件</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="application">application</button></td>
+<td>应用程序</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="file">file</button></td>
+<td>文件</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="folder">folder</button></td>
+<td>文件夹</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="shared folder">shared folder</button></td>
+<td>共享文件夹</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="administrator">administrator</button></td>
+<td>管理员</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="blue screen">blue screen</button></td>
+<td>蓝屏</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="boot">boot</button></td>
+<td>启动</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="shutdown">shutdown</button></td>
+<td>关机</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="printer offline">printer offline</button></td>
+<td>打印机离线</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="paper jam">paper jam</button></td>
+<td>卡纸</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="toner">toner</button></td>
+<td>碳粉</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="tray">tray</button></td>
+<td>纸盒 / 线槽</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="conduit">conduit</button></td>
+<td>线管</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="patch panel">patch panel</button></td>
+<td>配线架</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="faceplate">faceplate</button></td>
+<td>面板</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="outlet">outlet</button></td>
+<td>信息点</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="connector">connector</button></td>
+<td>接头</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="crimping tool">crimping tool</button></td>
+<td>压线钳</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="tester">tester</button></td>
+<td>测试仪</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="termination">termination</button></td>
+<td>端接</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="grounding">grounding</button></td>
+<td>接地</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="cabinet">cabinet</button></td>
+<td>机柜</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="mount">mount</button></td>
+<td>安装固定</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="drilling">drilling</button></td>
+<td>打孔</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="ceiling">ceiling</button></td>
+<td>天花板</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="wall">wall</button></td>
+<td>墙</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="floor">floor</button></td>
+<td>楼层</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="office">office</button></td>
+<td>办公室</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="room">room</button></td>
+<td>房间</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="CCTV">CCTV</button></td>
+<td>监控系统</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="NVR">NVR</button></td>
+<td>网络录像机</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="DVR">DVR</button></td>
+<td>数字录像机</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="recorder">recorder</button></td>
+<td>录像机</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="image">image</button></td>
+<td>图像</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="resolution">resolution</button></td>
+<td>分辨率</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="infrared">infrared</button></td>
+<td>红外</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="access control">access control</button></td>
+<td>门禁</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="card reader">card reader</button></td>
+<td>读卡器</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="door lock">door lock</button></td>
+<td>门锁</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="power supply">power supply</button></td>
+<td>电源供应</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="adapter">adapter</button></td>
+<td>适配器</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="serial number">serial number</button></td>
+<td>序列号</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="inventory">inventory</button></td>
+<td>资产清单</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="inspection">inspection</button></td>
+<td>巡检</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="maintenance">maintenance</button></td>
+<td>维护</td>
+</tr>
+<tr>
+<td><button class="speak speak-code" type="button" data-speak="warranty">warranty</button></td>
+<td>质保</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2>5. 最常用 100 句</h2>
+<h2>5.1 网络</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The network is down.">The network is down.</button> 网络中断了。 <button class="speak-line" type="button" data-speak="The network is down." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The internet is slow.">The internet is slow.</button> 网络很慢。 <button class="speak-line" type="button" data-speak="The internet is slow." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the cable.">Please check the cable.</button> 请检查线缆。 <button class="speak-line" type="button" data-speak="Please check the cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the port.">Please check the port.</button> 请检查端口。 <button class="speak-line" type="button" data-speak="Please check the port." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="This port is down.">This port is down.</button> 这个端口掉了。 <button class="speak-line" type="button" data-speak="This port is down." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The link light is off.">The link light is off.</button> 链路灯没亮。 <button class="speak-line" type="button" data-speak="The link light is off." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please ping the gateway.">Please ping the gateway.</button> 请 ping 网关。 <button class="speak-line" type="button" data-speak="Please ping the gateway." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The IP address is wrong.">The IP address is wrong.</button> IP 地址不对。 <button class="speak-line" type="button" data-speak="The IP address is wrong." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The DNS setting is incorrect.">The DNS setting is incorrect.</button> DNS 设置不对。 <button class="speak-line" type="button" data-speak="The DNS setting is incorrect." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The switch is offline.">The switch is offline.</button> 交换机离线了。 <button class="speak-line" type="button" data-speak="The switch is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The router needs to be restarted.">The router needs to be restarted.</button> 路由器需要重启。 <button class="speak-line" type="button" data-speak="The router needs to be restarted." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The signal is weak.">The signal is weak.</button> 信号弱。 <button class="speak-line" type="button" data-speak="The signal is weak." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The Wi-Fi is unstable.">The Wi-Fi is unstable.</button> 无线不稳定。 <button class="speak-line" type="button" data-speak="The Wi-Fi is unstable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The uplink is disconnected.">The uplink is disconnected.</button> 上联断开了。 <button class="speak-line" type="button" data-speak="The uplink is disconnected." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please save the configuration.">Please save the configuration.</button> 请保存配置。 <button class="speak-line" type="button" data-speak="Please save the configuration." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please back up the configuration.">Please back up the configuration.</button> 请备份配置。 <button class="speak-line" type="button" data-speak="Please back up the configuration." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The firewall may block this traffic.">The firewall may block this traffic.</button> 防火墙可能拦截了这个流量。 <button class="speak-line" type="button" data-speak="The firewall may block this traffic." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="There is packet loss on this link.">There is packet loss on this link.</button> 这条链路有丢包。 <button class="speak-line" type="button" data-speak="There is packet loss on this link." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The latency is too high.">The latency is too high.</button> 延迟太高。 <button class="speak-line" type="button" data-speak="The latency is too high." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please test again.">Please test again.</button> 请再测一次。 <button class="speak-line" type="button" data-speak="Please test again." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>5.2 桌面</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The computer cannot boot.">The computer cannot boot.</button> 电脑无法启动。 <button class="speak-line" type="button" data-speak="The computer cannot boot." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The screen is black.">The screen is black.</button> 屏幕黑了。 <button class="speak-line" type="button" data-speak="The screen is black." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The mouse is not responding.">The mouse is not responding.</button> 鼠标没反应。 <button class="speak-line" type="button" data-speak="The mouse is not responding." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The keyboard is not working.">The keyboard is not working.</button> 键盘不能用。 <button class="speak-line" type="button" data-speak="The keyboard is not working." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please restart the computer.">Please restart the computer.</button> 请重启电脑。 <button class="speak-line" type="button" data-speak="Please restart the computer." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please log in again.">Please log in again.</button> 请重新登录。 <button class="speak-line" type="button" data-speak="Please log in again." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The password is incorrect.">The password is incorrect.</button> 密码错误。 <button class="speak-line" type="button" data-speak="The password is incorrect." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The user forgot the password.">The user forgot the password.</button> 用户忘记密码了。 <button class="speak-line" type="button" data-speak="The user forgot the password." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The printer is offline.">The printer is offline.</button> 打印机离线。 <button class="speak-line" type="button" data-speak="The printer is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The printer driver is missing.">The printer driver is missing.</button> 打印机驱动没装。 <button class="speak-line" type="button" data-speak="The printer driver is missing." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please reinstall the driver.">Please reinstall the driver.</button> 请重装驱动。 <button class="speak-line" type="button" data-speak="Please reinstall the driver." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="You do not have permission.">You do not have permission.</button> 你没有权限。 <button class="speak-line" type="button" data-speak="You do not have permission." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Open the shared folder.">Open the shared folder.</button> 打开共享文件夹。 <button class="speak-line" type="button" data-speak="Open the shared folder." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please update Windows.">Please update Windows.</button> 请更新 Windows。 <button class="speak-line" type="button" data-speak="Please update Windows." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The application cannot open.">The application cannot open.</button> 这个程序打不开。 <button class="speak-line" type="button" data-speak="The application cannot open." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Try another browser.">Try another browser.</button> 换个浏览器试试。 <button class="speak-line" type="button" data-speak="Try another browser." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please send me the file.">Please send me the file.</button> 请把文件发给我。 <button class="speak-line" type="button" data-speak="Please send me the file." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The system is very slow.">The system is very slow.</button> 系统很卡。 <button class="speak-line" type="button" data-speak="The system is very slow." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The PC has a blue screen.">The PC has a blue screen.</button> 电脑蓝屏了。 <button class="speak-line" type="button" data-speak="The PC has a blue screen." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="It is working now.">It is working now.</button> 现在已经好了。 <button class="speak-line" type="button" data-speak="It is working now." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>5.3 布线与现场</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Please label both ends of the cable.">Please label both ends of the cable.</button> 请在线两端贴标签。 <button class="speak-line" type="button" data-speak="Please label both ends of the cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Run the cable above the ceiling.">Run the cable above the ceiling.</button> 线从天花上走。 <button class="speak-line" type="button" data-speak="Run the cable above the ceiling." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Pull the cable through the conduit.">Pull the cable through the conduit.</button> 把线穿过线管。 <button class="speak-line" type="button" data-speak="Pull the cable through the conduit." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Install the faceplate here.">Install the faceplate here.</button> 在这里安装面板。 <button class="speak-line" type="button" data-speak="Install the faceplate here." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Terminate the cable on the patch panel.">Terminate the cable on the patch panel.</button> 把线打到配线架上。 <button class="speak-line" type="button" data-speak="Terminate the cable on the patch panel." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please test all outlets.">Please test all outlets.</button> 请测试所有点位。 <button class="speak-line" type="button" data-speak="Please test all outlets." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The cable route is blocked.">The cable route is blocked.</button> 走线路径堵住了。 <button class="speak-line" type="button" data-speak="The cable route is blocked." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The conduit is full.">The conduit is full.</button> 线管满了。 <button class="speak-line" type="button" data-speak="The conduit is full." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="This cable is too short.">This cable is too short.</button> 这根线太短了。 <button class="speak-line" type="button" data-speak="This cable is too short." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="This cable is too long.">This cable is too long.</button> 这根线太长了。 <button class="speak-line" type="button" data-speak="This cable is too long." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please mount the device on the wall.">Please mount the device on the wall.</button> 请把设备装在墙上。 <button class="speak-line" type="button" data-speak="Please mount the device on the wall." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The rack is full.">The rack is full.</button> 机柜满了。 <button class="speak-line" type="button" data-speak="The rack is full." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the grounding.">Please check the grounding.</button> 请检查接地。 <button class="speak-line" type="button" data-speak="Please check the grounding." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The label is missing.">The label is missing.</button> 标签缺失。 <button class="speak-line" type="button" data-speak="The label is missing." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The connector is loose.">The connector is loose.</button> 接头松了。 <button class="speak-line" type="button" data-speak="The connector is loose." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Use the tester to check it.">Use the tester to check it.</button> 用测试仪测一下。 <button class="speak-line" type="button" data-speak="Use the tester to check it." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>5.4 监控门禁</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="The camera is offline.">The camera is offline.</button> 摄像头离线。 <button class="speak-line" type="button" data-speak="The camera is offline." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="There is no image.">There is no image.</button> 没有图像。 <button class="speak-line" type="button" data-speak="There is no image." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The image is blurry.">The image is blurry.</button> 图像模糊。 <button class="speak-line" type="button" data-speak="The image is blurry." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the power supply.">Please check the power supply.</button> 请检查供电。 <button class="speak-line" type="button" data-speak="Please check the power supply." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please check the network cable.">Please check the network cable.</button> 请检查网线。 <button class="speak-line" type="button" data-speak="Please check the network cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Restart the NVR.">Restart the NVR.</button> 重启录像机。 <button class="speak-line" type="button" data-speak="Restart the NVR." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The recorder cannot find the camera.">The recorder cannot find the camera.</button> 录像机找不到摄像头。 <button class="speak-line" type="button" data-speak="The recorder cannot find the camera." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The infrared light is on.">The infrared light is on.</button> 红外灯亮着。 <button class="speak-line" type="button" data-speak="The infrared light is on." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The card reader is not working.">The card reader is not working.</button> 读卡器不能用。 <button class="speak-line" type="button" data-speak="The card reader is not working." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The door lock has no power.">The door lock has no power.</button> 门锁没电。 <button class="speak-line" type="button" data-speak="The door lock has no power." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The door does not open.">The door does not open.</button> 门打不开。 <button class="speak-line" type="button" data-speak="The door does not open." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The alarm was triggered.">The alarm was triggered.</button> 报警被触发了。 <button class="speak-line" type="button" data-speak="The alarm was triggered." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h2>5.5 通用表达</h2>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="I am checking it now.">I am checking it now.</button> 我正在检查。 <button class="speak-line" type="button" data-speak="I am checking it now." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I found the issue.">I found the issue.</button> 我找到问题了。 <button class="speak-line" type="button" data-speak="I found the issue." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I replaced the cable.">I replaced the cable.</button> 我换了线。 <button class="speak-line" type="button" data-speak="I replaced the cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="I restarted the device.">I restarted the device.</button> 我重启了设备。 <button class="speak-line" type="button" data-speak="I restarted the device." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please try again.">Please try again.</button> 请再试一次。 <button class="speak-line" type="button" data-speak="Please try again." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you see it now?">Can you see it now?</button> 你现在能看到了吗？ <button class="speak-line" type="button" data-speak="Can you see it now?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Can you log in now?">Can you log in now?</button> 你现在能登录了吗？ <button class="speak-line" type="button" data-speak="Can you log in now?" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The issue has been fixed.">The issue has been fixed.</button> 问题已修复。 <button class="speak-line" type="button" data-speak="The issue has been fixed." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Please confirm.">Please confirm.</button> 请确认。 <button class="speak-line" type="button" data-speak="Please confirm." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Thank you for your support.">Thank you for your support.</button> 感谢配合。 <button class="speak-line" type="button" data-speak="Thank you for your support." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>6. 高频词组速记</h2>
+<h3>网络</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="network cable">network cable</button> 网线 <button class="speak-line" type="button" data-speak="network cable" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="power cable">power cable</button> 电源线 <button class="speak-line" type="button" data-speak="power cable" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="switch port">switch port</button> 交换机端口 <button class="speak-line" type="button" data-speak="switch port" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="link light">link light</button> 链路灯 <button class="speak-line" type="button" data-speak="link light" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="IP address">IP address</button> IP 地址 <button class="speak-line" type="button" data-speak="IP address" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="default gateway">default gateway</button> 默认网关 <button class="speak-line" type="button" data-speak="default gateway" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="wireless signal">wireless signal</button> 无线信号 <button class="speak-line" type="button" data-speak="wireless signal" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="packet loss">packet loss</button> 丢包 <button class="speak-line" type="button" data-speak="packet loss" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="remote access">remote access</button> 远程访问 <button class="speak-line" type="button" data-speak="remote access" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="local network">local network</button> 本地网络 <button class="speak-line" type="button" data-speak="local network" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h3>桌面</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="shared printer">shared printer</button> 共享打印机 <button class="speak-line" type="button" data-speak="shared printer" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="shared folder">shared folder</button> 共享文件夹 <button class="speak-line" type="button" data-speak="shared folder" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="user account">user account</button> 用户账号 <button class="speak-line" type="button" data-speak="user account" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="administrator permission">administrator permission</button> 管理员权限 <button class="speak-line" type="button" data-speak="administrator permission" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="printer driver">printer driver</button> 打印机驱动 <button class="speak-line" type="button" data-speak="printer driver" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="system update">system update</button> 系统更新 <button class="speak-line" type="button" data-speak="system update" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="blue screen">blue screen</button> 蓝屏 <button class="speak-line" type="button" data-speak="blue screen" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="login page">login page</button> 登录页面 <button class="speak-line" type="button" data-speak="login page" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h3>弱电施工</h3>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="cable tray">cable tray</button> 桥架 <button class="speak-line" type="button" data-speak="cable tray" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="patch panel">patch panel</button> 配线架 <button class="speak-line" type="button" data-speak="patch panel" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="information outlet">information outlet</button> 信息点 <button class="speak-line" type="button" data-speak="information outlet" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="wall-mounted camera">wall-mounted camera</button> 壁挂摄像头 <button class="speak-line" type="button" data-speak="wall-mounted camera" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="ceiling-mounted AP">ceiling-mounted AP</button> 吸顶 AP <button class="speak-line" type="button" data-speak="ceiling-mounted AP" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="power supply">power supply</button> 电源供应 <button class="speak-line" type="button" data-speak="power supply" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="cable tester">cable tester</button> 测线仪 <button class="speak-line" type="button" data-speak="cable tester" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="site inspection">site inspection</button> 现场巡检 <button class="speak-line" type="button" data-speak="site inspection" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>7. 三轮背诵法</h2>
+<h3>第一轮：认词</h3>
+<p>只要做到：</p>
+<ul>
+  <li>看到英文知道中文大概意思</li>
+  <li>看到设备能想到英文</li>
+</ul>
+<h3>第二轮：说句子</h3>
+<p>把词放进句子里：</p>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="Check the cable.">Check the cable.</button> <button class="speak-line" type="button" data-speak="Check the cable." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="Restart the switch.">Restart the switch.</button> <button class="speak-line" type="button" data-speak="Restart the switch." aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="The camera is offline.">The camera is offline.</button> <button class="speak-line" type="button" data-speak="The camera is offline." aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<h3>第三轮：套场景</h3>
+<p>比如用户说网络不通，你脑子里直接出现：</p>
+<ul>
+  <li><button class="speak speak-code" type="button" data-speak="network">network</button> <button class="speak-line" type="button" data-speak="network" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="cable">cable</button> <button class="speak-line" type="button" data-speak="cable" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="port">port</button> <button class="speak-line" type="button" data-speak="port" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="gateway">gateway</button> <button class="speak-line" type="button" data-speak="gateway" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="ping">ping</button> <button class="speak-line" type="button" data-speak="ping" aria-label="鏈楄鏈彞">Read</button></li>
+  <li><button class="speak speak-code" type="button" data-speak="switch">switch</button> <button class="speak-line" type="button" data-speak="switch" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<hr>
+<h2>8. 最适合零基础的背法</h2>
+<p>不要死记字母，按“画面”记。</p>
+<p>例如：</p>
+<ul>
+  <li>看到网线，就默念 <button class="speak speak-code" type="button" data-speak="cable">cable</button> <button class="speak-line" type="button" data-speak="cable" aria-label="鏈楄鏈彞">Read</button></li>
+  <li>看到交换机，就默念 <button class="speak speak-code" type="button" data-speak="switch">switch</button> <button class="speak-line" type="button" data-speak="switch" aria-label="鏈楄鏈彞">Read</button></li>
+  <li>看到摄像头，就默念 <button class="speak speak-code" type="button" data-speak="camera">camera</button> <button class="speak-line" type="button" data-speak="camera" aria-label="鏈楄鏈彞">Read</button></li>
+  <li>看到打印机，就默念 <button class="speak speak-code" type="button" data-speak="printer">printer</button> <button class="speak-line" type="button" data-speak="printer" aria-label="鏈楄鏈彞">Read</button></li>
+  <li>看到机柜，就默念 <button class="speak speak-code" type="button" data-speak="rack">rack</button> <button class="speak-line" type="button" data-speak="rack" aria-label="鏈楄鏈彞">Read</button></li>
+</ul>
+<p>这种方法最适合现场工程师。</p>
+<hr>
+<h2>9. 每天 10 分钟模板</h2>
+<pre><code>第 1 分钟：复习昨天 10 个词
+第 2-5 分钟：学习今天 10 个词
+第 6-8 分钟：每个词说一句
+第 9-10 分钟：闭眼回忆</code></pre>
+<p>例子：</p>
+<pre><code>cable - Please check the cable.
+port - This port is down.
+power - The device has no power.
+camera - The camera is offline.
+printer - The printer is offline.
+restart - Please restart the computer.
+gateway - Ping the gateway.
+label - Please add a label.
+driver - Reinstall the driver.
+signal - The signal is weak.</code></pre>
+<hr>
+<h2>10. 建议</h2>
+<p>这份背诵版不要一次看完。<br></p>
+<p>最好的方法是：</p>
+<ul>
+  <li>先背第 2 部分</li>
+  <li>再背第 5 部分句子</li>
+  <li>再按你工作方向补第 3、4 部分</li>
+</ul>
+<p>如果你能把这里面 200 个词和 100 句吃透，工作英语已经够用了。</p>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const synth = window.speechSynthesis;
+      let activeButton = null;
+      let sequence = [];
+      let currentIndex = -1;
+      let autoPlay = false;
+
+      function clearActive() {
+        if (activeButton) {
+          activeButton.classList.remove('playing');
+          activeButton = null;
+        }
+      }
+
+      function chooseVoice() {
+        const voices = synth.getVoices();
+        const preferred = voices.find(v => /^en/i.test(v.lang) && /US|GB|AU/i.test(v.lang))
+          || voices.find(v => /^en/i.test(v.lang));
+        return preferred || null;
+      }
+
+      function getSequenceButtons() {
+        return Array.from(document.querySelectorAll('.speak-line'));
+      }
+
+      function speak(text, button, onEnd) {
+        if (!synth || !text) return;
+
+        synth.cancel();
+        clearActive();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        const voice = chooseVoice();
+        if (voice) utterance.voice = voice;
+        utterance.rate = 0.92;
+        utterance.pitch = 1;
+
+        activeButton = button;
+        if (activeButton) activeButton.classList.add('playing');
+
+        utterance.onend = () => {
+          clearActive();
+          if (typeof onEnd === 'function') onEnd();
+        };
+        utterance.onerror = () => {
+          clearActive();
+          if (typeof onEnd === 'function') onEnd();
+        };
+
+        synth.speak(utterance);
+      }
+
+      function playIndex(index) {
+        sequence = getSequenceButtons();
+        if (!sequence.length) return;
+        if (index < 0 || index >= sequence.length) {
+          autoPlay = false;
+          currentIndex = -1;
+          return;
+        }
+        currentIndex = index;
+        const button = sequence[currentIndex];
+        const text = button.dataset.speak || button.textContent.trim();
+        speak(text, button, () => {
+          if (autoPlay) playIndex(currentIndex + 1);
+        });
+      }
+
+      window.addEventListener('beforeunload', () => synth && synth.cancel());
+
+      document.addEventListener('click', event => {
+        const button = event.target.closest('.speak');
+        if (button) {
+          autoPlay = false;
+          const text = button.dataset.speak || button.textContent.trim();
+          speak(text, button);
+          return;
+        }
+
+        const lineButton = event.target.closest('.speak-line');
+        if (lineButton) {
+          autoPlay = false;
+          sequence = getSequenceButtons();
+          currentIndex = sequence.indexOf(lineButton);
+          const text = lineButton.dataset.speak || lineButton.textContent.trim();
+          speak(text, lineButton);
+          return;
+        }
+      });
+
+      document.getElementById('play-all')?.addEventListener('click', () => {
+        sequence = getSequenceButtons();
+        if (!sequence.length) return;
+        autoPlay = true;
+        playIndex(currentIndex >= 0 ? currentIndex : 0);
+      });
+
+      document.getElementById('play-next')?.addEventListener('click', () => {
+        sequence = getSequenceButtons();
+        if (!sequence.length) return;
+        autoPlay = false;
+        const nextIndex = currentIndex >= 0 ? Math.min(currentIndex + 1, sequence.length - 1) : 0;
+        playIndex(nextIndex);
+      });
+
+      document.getElementById('stop-play')?.addEventListener('click', () => {
+        autoPlay = false;
+        synth.cancel();
+        clearActive();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>弱电网络工程英语</title>
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --panel: #fffaf2;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --line: #e4d8c7;
+      --accent: #b45309;
+      --accent-strong: #7c2d12;
+      --accent-soft: #fde7c7;
+      --shadow: 0 16px 38px rgba(68, 42, 18, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(253, 231, 199, 0.9) 0, transparent 28%),
+        linear-gradient(180deg, #fbf7ef 0%, var(--bg) 100%);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1060px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0 56px;
+    }
+
+    .hero {
+      padding: 18px 0 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent-strong);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 740px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .card {
+      display: flex;
+      min-height: 220px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 250, 242, 0.94);
+      box-shadow: var(--shadow);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card:focus-visible,
+    .card:hover {
+      border-color: rgba(180, 83, 9, 0.42);
+      outline: none;
+      transform: translateY(-2px);
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.28;
+      letter-spacing: 0;
+    }
+
+    .card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .card span {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 28px;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, 0.72);
+      padding: 5px 12px;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100% - 24px, 1060px);
+        padding-top: 24px;
+      }
+
+      .intro {
+        font-size: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 176px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">Network English</p>
+      <h1 id="page-title">弱电网络工程英语</h1>
+      <p class="intro">面向弱电、网络、安防、综合布线和现场交付场景的英语学习资料。</p>
+      <div class="meta" aria-label="资料类型">
+        <span class="pill">词汇总结</span>
+        <span class="pill">现场对话</span>
+        <span class="pill">高频背诵</span>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="学习资料目录">
+      <a class="card" href="弱电工程师英语词汇总结.html">
+        <div>
+          <h2>弱电工程师英语词汇总结</h2>
+          <p>按工程现场常用分类整理词汇、短语和表达。</p>
+        </div>
+        <span>打开页面 →</span>
+      </a>
+
+      <a class="card" href="弱电工程师英语现场对话版.html">
+        <div>
+          <h2>弱电工程师英语现场对话版</h2>
+          <p>覆盖施工、调试、验收、沟通等现场对话场景。</p>
+        </div>
+        <span>打开页面 →</span>
+      </a>
+
+      <a class="card" href="弱电工程师英语高频背诵版.html">
+        <div>
+          <h2>弱电工程师英语高频背诵版</h2>
+          <p>适合快速复习和日常背诵的高频句型内容。</p>
+        </div>
+        <span>打开页面 →</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
