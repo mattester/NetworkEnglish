@@ -1773,11 +1773,15 @@ printer - 打印机 - The printer is offline.</code></pre>
   </div>
   <script>
     (() => {
-      const synth = window.speechSynthesis;
+      const synth = 'speechSynthesis' in window ? window.speechSynthesis : null;
+      const canUseSpeech = synth && typeof window.SpeechSynthesisUtterance === 'function';
+      let voices = [];
       let activeButton = null;
+      let activeAudio = null;
       let sequence = [];
       let currentIndex = -1;
       let autoPlay = false;
+      let playToken = 0;
 
       function clearActive() {
         if (activeButton) {
@@ -1786,10 +1790,49 @@ printer - 打印机 - The printer is offline.</code></pre>
         }
       }
 
+      function stopAudio() {
+        if (!activeAudio) return;
+        activeAudio.pause();
+        activeAudio.removeAttribute('src');
+        activeAudio.load();
+        activeAudio = null;
+      }
+
+      function markActive(button) {
+        clearActive();
+        activeButton = button;
+        if (activeButton) activeButton.classList.add('playing');
+      }
+
+      function loadVoices() {
+        if (!synth) return [];
+        voices = synth.getVoices();
+        return voices;
+      }
+
+      function startVoiceLoading() {
+        if (!synth) return;
+
+        loadVoices();
+
+        if (typeof synth.addEventListener === 'function') {
+          synth.addEventListener('voiceschanged', loadVoices);
+        } else if ('onvoiceschanged' in synth) {
+          synth.onvoiceschanged = loadVoices;
+        }
+
+        const timer = window.setInterval(() => {
+          if (loadVoices().length) window.clearInterval(timer);
+        }, 250);
+
+        window.setTimeout(() => window.clearInterval(timer), 5000);
+      }
+
       function chooseVoice() {
-        const voices = synth.getVoices();
-        const preferred = voices.find(v => /^en/i.test(v.lang) && /US|GB|AU/i.test(v.lang))
-          || voices.find(v => /^en/i.test(v.lang));
+        const voiceList = voices.length ? voices : loadVoices();
+        const preferred = voiceList.find(v => /^en-US/i.test(v.lang) || /United States|US English|Jenny|Aria|Samantha/i.test(v.name))
+          || voiceList.find(v => /^en-GB/i.test(v.lang) || /UK English|Daniel|George|Hazel/i.test(v.name))
+          || voiceList.find(v => /^en/i.test(v.lang));
         return preferred || null;
       }
 
@@ -1797,32 +1840,94 @@ printer - 打印机 - The printer is offline.</code></pre>
         return Array.from(document.querySelectorAll('.speak-line'));
       }
 
-      function speak(text, button, onEnd) {
-        if (!synth || !text) return;
+      function normalizeText(text) {
+        return (text || '').replace(/\s+/g, ' ').trim();
+      }
 
-        synth.cancel();
+      function audioUrl(text) {
+        const shortText = text.length > 450 ? text.slice(0, 450) : text;
+        return 'https://dict.youdao.com/dictvoice?type=2&audio=' + encodeURIComponent(shortText);
+      }
+
+      function finishPlayback(token, onEnd) {
+        if (token !== playToken) return;
+        stopAudio();
         clearActive();
+        if (typeof onEnd === 'function') onEnd();
+      }
+
+      function speakWithAudio(text, token, onEnd, onError) {
+        stopAudio();
+
+        const audio = new Audio(audioUrl(text));
+        activeAudio = audio;
+        audio.preload = 'auto';
+        audio.onended = () => finishPlayback(token, onEnd);
+        audio.onerror = () => {
+          stopAudio();
+          if (typeof onError === 'function') {
+            onError();
+          } else {
+            finishPlayback(token, onEnd);
+          }
+        };
+        audio.play().catch(() => {
+          stopAudio();
+          if (typeof onError === 'function') {
+            onError();
+          } else {
+            finishPlayback(token, onEnd);
+          }
+        });
+      }
+
+      function speakWithBrowser(text, token, onEnd) {
+        if (!canUseSpeech) {
+          finishPlayback(token, onEnd);
+          return;
+        }
+
+        if (synth.paused) synth.resume();
 
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'en-US';
         const voice = chooseVoice();
         if (voice) utterance.voice = voice;
+        utterance.volume = 1;
         utterance.rate = 0.92;
         utterance.pitch = 1;
 
-        activeButton = button;
-        if (activeButton) activeButton.classList.add('playing');
+        let completed = false;
 
         utterance.onend = () => {
-          clearActive();
-          if (typeof onEnd === 'function') onEnd();
+          if (completed) return;
+          completed = true;
+          finishPlayback(token, onEnd);
         };
         utterance.onerror = () => {
-          clearActive();
-          if (typeof onEnd === 'function') onEnd();
+          if (completed) return;
+          completed = true;
+          finishPlayback(token, onEnd);
         };
 
-        synth.speak(utterance);
+        try {
+          synth.speak(utterance);
+          if (synth.paused) synth.resume();
+        } catch (error) {
+          finishPlayback(token, onEnd);
+        }
+      }
+
+      function speak(text, button, onEnd) {
+        text = normalizeText(text);
+        if (!text) return;
+
+        const token = ++playToken;
+        stopAudio();
+        markActive(button);
+
+        if (synth) synth.cancel();
+        speakWithAudio(text, token, onEnd, () => speakWithBrowser(text, token, onEnd));
       }
 
       function playIndex(index) {
@@ -1841,11 +1946,18 @@ printer - 打印机 - The printer is offline.</code></pre>
         });
       }
 
-      window.addEventListener('beforeunload', () => synth && synth.cancel());
+      startVoiceLoading();
+
+      window.addEventListener('beforeunload', () => {
+        playToken += 1;
+        stopAudio();
+        if (synth) synth.cancel();
+      });
 
       document.addEventListener('click', event => {
         const button = event.target.closest('.speak');
         if (button) {
+          event.preventDefault();
           autoPlay = false;
           const text = button.dataset.speak || button.textContent.trim();
           speak(text, button);
@@ -1854,6 +1966,7 @@ printer - 打印机 - The printer is offline.</code></pre>
 
         const lineButton = event.target.closest('.speak-line');
         if (lineButton) {
+          event.preventDefault();
           autoPlay = false;
           sequence = getSequenceButtons();
           currentIndex = sequence.indexOf(lineButton);
@@ -1880,7 +1993,9 @@ printer - 打印机 - The printer is offline.</code></pre>
 
       document.getElementById('stop-play')?.addEventListener('click', () => {
         autoPlay = false;
-        synth.cancel();
+        playToken += 1;
+        stopAudio();
+        if (synth) synth.cancel();
         clearActive();
       });
     })();
